@@ -1,0 +1,41 @@
+* {
+/*  padding: 0px;*/
+  margin: 0px auto;
+  font-family: Helvetica;
+}
+
+#wrapper {
+  margin-top: 10px;
+  width: 100%;
+  min-width: 600px;
+  text-align: center;
+}
+
+h1 {
+  margin-bottom: 10px;
+}
+
+#origin, #destination {
+  margin: 0px 20px 0px 5px;
+  font-size: 16px;
+}
+
+#get-directions {
+  padding: 2px 5px;
+  background-color: dodgerblue;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  border-style: none;
+  border: none;
+  border-radius: 3px;
+}
+#directions {
+  width: 80%;
+  min-width: 828px;
+  margin-top: 10px;
+}
+#directions ol li {
+  text-align: left;
+  margin: 3px 0px;
+}

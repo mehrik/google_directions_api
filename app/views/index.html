@@ -1,0 +1,45 @@
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" href="/static/css/styles.css" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('form').submit(function() {
+                $.post('/maps/get_directions', $(this).serialize(), function(res) {
+                    // console.log(res);
+                    var html_str = '';
+                    var start = res.routes[0].legs[0].start_address;
+                    var end = res.routes[0].legs[0].end_address;
+                    var direction = res.routes[0].legs[0].steps;
+                    for(var i = 0; i < direction.length; i++) {
+                        list_item = "<li>"+direction[i].html_instructions+"</li>";
+                        html_str += list_item;
+                    }
+                    // console.log(html_str);
+                    $('#directions').html(
+                        "<h3>Directions from "+start+" to "+end+"</h3><ol type='1'>"+html_str+"</ol>"
+                        );
+                }, 'json');
+                return false;
+            });
+        });
+
+    </script>
+</head>
+<body>
+    <div id='wrapper'>
+        <h1>Google Directions API</h1>
+        <div id='search-bar'>
+            <form>
+                <label for='origin'>From:</label>
+                <input type='search' name='origin' id='origin'>
+                <label for='destination'>To:</label>
+                <input type='search' name='destination' id='destination'>
+                <input type='submit' value='Get Directions!' id='get-directions'>
+            </form>
+        </div>
+        <div id='directions'></div>
+    </div>
+</body>
+</html>
